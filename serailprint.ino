@@ -1,8 +1,8 @@
 void setup() {
   Serial.begin(9600);  // Start serial communication
-  Serial.println("Hello World");  // Print Hello World
 }
 
 void loop() {
-  // Nothing to do here
+  Serial.println("Hello World");  // Continuously print Hello World
+  delay(1000);  // Wait for 1 second before printing again
 }
