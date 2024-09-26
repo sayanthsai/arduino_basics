@@ -1,0 +1,28 @@
+// Constants
+const int analogPin = A0;  // Pin connected to voltage divider
+const float resistor1 = 1000.0;  // Resistor R1 value (1kΩ)
+const float resistor2 = 2000.0;  // Resistor R2 value (2kΩ)
+const float referenceVoltage = 5.0;  // Reference voltage of Arduino (5V for most boards)
+const int adcMaxValue = 1023;  // Max value of the ADC (10-bit)
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read the analog input
+  int adcValue = analogRead(analogPin);
+  
+  // Calculate the measured voltage at the ADC pin
+  float voltageAtDivider = (adcValue * referenceVoltage) / adcMaxValue;
+
+  // Calculate the input voltage based on the voltage divider formula
+  float inputVoltage = voltageAtDivider * (resistor1 + resistor2) / resistor2;
+
+  // Print the result to the serial monitor
+  Serial.print("Input Voltage: ");
+  Serial.print(inputVoltage);
+  Serial.println(" V");
+
+  delay(1000);  // Wait for 1 second before the next measurement
+}
