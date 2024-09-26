@@ -1,0 +1,20 @@
+int ledPin = 9;  // PWM-enabled pin for the LED
+int brightness = 0;  // Variable to store the brightness level
+int fadeAmount = 5;  // How much to change the brightness per loop
+
+void setup() {
+  pinMode(ledPin, OUTPUT);  // Set the LED pin as an output
+}
+
+void loop() {
+  analogWrite(ledPin, brightness);  // Set the brightness using PWM
+
+  brightness = brightness + fadeAmount;  // Increase brightness by fadeAmount
+
+  // Reverse the direction of brightness change at the limits
+  if (brightness <= 0 || brightness >= 255) {
+    fadeAmount = -fadeAmount;
+  }
+
+  delay(30);  // Delay to make the fading visible
+}
