@@ -1,0 +1,19 @@
+const int irSensorPin = 2;   // IR sensor OUT connected to digital pin 2
+const int ledPin = 13;       // LED connected to digital pin 13 (built-in LED)
+
+void setup() {
+  pinMode(irSensorPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int sensorState = digitalRead(irSensorPin);
+
+  if (sensorState == LOW) {  // Object detected
+    digitalWrite(ledPin, HIGH);  // Turn on LED
+  } else {
+    digitalWrite(ledPin, LOW);   // Turn off LED
+  }
+
+  delay(100);  // Short delay to avoid flicker
+}
