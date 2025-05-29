@@ -1,0 +1,25 @@
+const int ledPin = 13; // Built-in LED pin on most Arduino boards
+
+void setup() {
+  pinMode(ledPin, OUTPUT);       // Set pin 13 as an output
+  Serial.begin(9600);            // Start serial communication at 9600 baud
+  Serial.println("Send '1' to turn ON the LED, '0' to turn it OFF.");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    char input = Serial.read();  // Read the incoming byte
+
+    if (input == '1') {
+      digitalWrite(ledPin, HIGH);  // Turn the LED ON
+      Serial.println("LED ON");
+    }
+    else if (input == '0') {
+      digitalWrite(ledPin, LOW);   // Turn the LED OFF
+      Serial.println("LED OFF");
+    }
+    else {
+      Serial.println("Invalid input. Send '1' or '0'.");
+    }
+  }
+}
